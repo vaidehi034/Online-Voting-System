@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | Online Voting System</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        /* HEADER */
+        .header {
+            height: 75px;
+            background: #172554;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6%;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.12);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            font-size: 30px;
+        }
+
+        .logo-text {
+            font-size: 21px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .logout {
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.12);
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .logout:hover {
+            background: #dc2626;
+        }
+
+        /* MAIN */
+        .container {
+            width: 88%;
+            max-width: 1200px;
+            margin: 35px auto;
+        }
+
+        /* WELCOME */
+        .welcome {
+            background: linear-gradient(135deg, #1d4ed8, #2563eb);
+            color: white;
+            padding: 38px;
+            border-radius: 18px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 28px;
+            box-shadow: 0 10px 30px rgba(37,99,235,0.18);
+        }
+
+        .welcome::after {
+            content: "🗳️";
+            position: absolute;
+            right: 45px;
+            top: 15px;
+            font-size: 100px;
+            opacity: 0.12;
+        }
+
+        .welcome h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .welcome p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* USER INFO */
+        .user-info {
+            margin-top: 20px;
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 9px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        /* STATS */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+            margin-bottom: 28px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 27px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.10);
+        }
+
+        .card-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 27px;
+            background: #eff6ff;
+        }
+
+        .card h3 {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 5px;
+        }
+
+        .number {
+            font-size: 30px;
+            font-weight: bold;
+            color: #1d4ed8;
+        }
+
+        /* VOTING SECTION */
+        .voting-box {
+            background: white;
+            border-radius: 18px;
+            padding: 35px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+        }
+
+        .voting-icon {
+            font-size: 50px;
+            margin-bottom: 12px;
+        }
+
+        .voting-box h2 {
+            font-size: 25px;
+            margin-bottom: 10px;
+            color: #172554;
+        }
+
+        .voting-box p {
+            color: #6b7280;
+            margin-bottom: 20px;
+        }
+
+        .vote-btn {
+            display: inline-block;
+            background: #16a34a;
+            color: white;
+            padding: 14px 38px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .vote-btn:hover {
+            background: #15803d;
+            transform: translateY(-2px);
+        }
+
+        /* ADMIN */
+        .admin {
+            display: inline-block;
+            margin-bottom: 18px;
+            padding: 8px 14px;
+            border-radius: 20px;
+            background: #fff7ed;
+            color: #c2410c;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            color: #9ca3af;
+            font-size: 13px;
+            padding: 30px 0;
+        }
+
+        /* MOBILE */
+        @media (max-width: 700px) {
+
+            .header {
+                padding: 0 20px;
+            }
+
+            .logo-text {
+                font-size: 16px;
+            }
+
+            .container {
+                width: 92%;
+            }
+
+            .welcome {
+                padding: 28px;
+            }
+
+            .welcome h2 {
+                font-size: 25px;
+            }
+
+            .welcome::after {
+                display: none;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .voting-box {
+                padding: 28px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="logo">
+            <span class="logo-icon">🗳️</span>
+            <span class="logo-text">ONLINE VOTING SYSTEM</span>
+        </div>
+
+        <a href="/logout" class="logout">
+            Logout
+        </a>
+
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="container">
+
+        <!-- WELCOME -->
+        <section class="welcome">
+
+            <h2>
+                Welcome back, {{ user_name }}! 👋
+            </h2>
+
+            <p>
+                Your secure online voting dashboard
+            </p>
+
+            <div class="user-info">
+                👤 {{ user_email }}
+            </div>
+
+        </section>
+
+
+        <!-- STATISTICS -->
+        <section class="stats">
+
+            <div class="card">
+
+                <div class="card-icon">
+                    🗳️
+                </div>
+
+                <div>
+                    <h3>Total Votes</h3>
+
+                    <div class="number">
+                        {{ total_votes }}
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    👥
+                </div>
+
+                <div>
+                    <h3>Registered Users</h3>
+
+                    <div class="number">
+                        {{ total_users }}
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- VOTING -->
+        <section class="voting-box">
+
+            <div class="voting-icon">
+                🗳️
+            </div>
+
+            <h2>
+                Ready to Cast Your Vote?
+            </h2>
+
+            <p>
+                Participate in the election and make your choice.
+            </p>
+
+            {% if is_admin %}
+
+                <div class="admin">
+                    🔧 Admin Panel Available
+                </div>
+
+            {% endif %}
+
+            <br>
+
+            <a href="/voting" class="vote-btn">
+                🗳️ Go to Voting
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        Online Voting System • Secure & Simple
+    </footer>
+
+</body>
+</html>
